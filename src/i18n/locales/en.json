@@ -1,0 +1,60 @@
+{
+  "locale": {
+    "en": "English",
+    "ru": "Russian"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "home": {
+    "header": "Welcome to the Vue 3 I18n tutorial!",
+    "created_by": "This tutorial was brought to you by {company}.",
+    "num_visits": "This page hasn't been visited :( | This page has been visited {n} time | This page has been visited {n} times"
+  },
+  "about": {
+    "header": "About us",
+    "donations": "Donations raised: {donations}"
+  },
+  "login": {
+    "head": "Сome in",
+    "desc": "Welcome to the By-portal blogging platform!",
+    "email": "E-mail",
+    "emailplace": "Enter email",
+    "pass": "Password",
+    "passplace": "Enter password",
+    "forgot": "Forgot your password?",
+    "reg": "Register",
+    "have": "Don't have an account?",
+    "button": "Сome in",
+  },
+  "registration": {
+    "head": "Создать аккаунт",
+    "desc": "Еще немного и вы сможете стать частью мира By-portal!",
+    "email": "E-mail",
+    "emailplace": "Введите e-mail",
+    "pass": "Пароль",
+    "passplace": "Введите пароль",
+    "forgot": "Забыли пароль?",
+    "login": "Войти",
+    "have": "Уже есть аккаунт?",
+    "button": "Создать аккаунт"
+  },
+  "forgot": {
+    "head": "Восстановление пароля",
+    "desc": "Кажется, вы забыли пароль. Пожалуйста, введите Ваш адрес электронной почты.",
+    "email": "E-mail",
+    "emailplace": "Введите e-mail",
+    "login": "Войти",
+    "have": "Я вспомнил/а пароль",
+    "button": "Отправить"
+  },
+  "validations": {
+    "params": "{property} and {model}' and {min}",
+    "emailerror": "You entered an incorrect email",
+    "required": "This field is required",
+    "minLength": "Minimum number of characters - {min}.",
+    "maxLength": "Maximum number of characters - {max}.",
+    "wrongpass": "Password mismatch."
+  }
+}
