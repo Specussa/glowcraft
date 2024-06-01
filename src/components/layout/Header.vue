@@ -49,6 +49,58 @@ if (isOpenPopup.value === false) {
     }
   });
 }
+
+
+// start cart__accordion_block
+// const headertoplink = document.querySelector('.header__top_link');
+// const headertoplinks = document.getElementsByClassName("header__top_link");
+// if (headertoplink) {
+//   for (i = 0; i < headertoplinks.length; i++) {
+//     headertoplinks[i].onclick = function(e) {
+//       const headertoplinksNext = this.nextElementSibling;
+//       if (headertoplinksNext && this.parentElement.classList.contains("active")) {
+//         this.parentElement.classList.remove("active");
+//         headertoplinksNext.style.maxHeight = null;
+//       } else if (headertoplinksNext) {
+//         e.preventDefault();
+//         htlitem.forEach(n => n.classList.remove('active'));
+//         htlinfo.forEach(n => n.style.maxHeight = null);
+//         headertoplinksNext.style.maxHeight = headertoplinksNext.scrollHeight + "px";
+//         this.parentElement.classList.add("active");
+//       }
+//     };
+//   }
+//   window.addEventListener('click', e => {
+//     const target = e.target
+//     if (!target.closest('.header__top_list')) {
+//       htlitem.forEach(n => n.classList.remove('active'));
+//       htlinfo.forEach(n => n.style.maxHeight = null);
+//     }
+//   })
+// }
+// end cart__accordion_block
+  import { reactive } from 'vue'
+
+const items = [{ details: 'hello' }, { details: '123' }]
+const isActive = reactive({})
+const toggleAccordion = async i => {
+  console.log(isActive[i])
+  isActive[i] = isActive[i] ? !isActive[i] : true
+  console.log(isActive[i])
+}
+const toggleHeaderLink = (e) => {
+  console.log($el)
+  // if (this.nextElementSibling && this.parentElement.classList.contains("active")) {
+  //   this.parentElement.classList.remove("active");
+  //   this.nextElementSibling.style.maxHeight = null;
+  // } else if (this.nextElementSibling) {
+  //   e.preventDefault();
+  //   document.querySelectorAll(".header__top_flex .header__top_item").forEach(n => n.classList.remove('active'));
+  //   document.querySelectorAll(".header__top_flex .header__top_info").forEach(n => n.style.maxHeight = null);
+  //   this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + "px";
+  //   this.parentElement.classList.add("active");
+  // }
+};
 </script>
 
 <template>
@@ -60,12 +112,10 @@ if (isOpenPopup.value === false) {
         <div class="header__top_flex">
           <ul class="header__top_list">
             <li class="header__top_item">
-              <a href="#" class="header__top_link">
-                О компании
-              </a>
+              <RouterLink class="header__top_link" :to="Tr.i18nRoute({ name: 'about' })">{{ $t("nav.about") }}</RouterLink>
             </li>
             <li class="header__top_item">
-              <a href="#" class="header__top_link">
+              <a href="#" :class="{ 'is-open': isActive, 'header__top_link': true }" @click="() => toggleAccordion(i)">
                 Покупателям
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -74,30 +124,22 @@ if (isOpenPopup.value === false) {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Сотрудничество
-                    </a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Обучающие материалы
-                    </a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      3D - модели
-                    </a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Пункт 4
-                    </a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li class="header__top_item">
-              <a href="#" class="header__top_link">
+              <a href="#" class="header__top_link" @click="toggleHeaderLink">
                 Дизайнерам
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -106,24 +148,16 @@ if (isOpenPopup.value === false) {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Сотрудничество
-                    </a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Обучающие материалы
-                    </a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      3D - модели
-                    </a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Пункт 4
-                    </a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
@@ -131,7 +165,7 @@ if (isOpenPopup.value === false) {
           </ul>
           <ul class="header__top_list">
             <li class="header__top_item">
-              <button class="header__top_link">
+              <button class="header__top_link" @click="toggleHeaderLink">
                 Самара
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -140,30 +174,22 @@ if (isOpenPopup.value === false) {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Сотрудничество
-                    </a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Обучающие материалы
-                    </a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      3D - модели
-                    </a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Пункт 4
-                    </a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li class="header__top_item">
-              <a href="tel://+79869553948" class="header__top_link">
+              <a href="tel://+79869553948" class="header__top_link" @click="toggleHeaderLink">
                 +7 (986) 955-39-48
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -172,27 +198,25 @@ if (isOpenPopup.value === false) {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Сотрудничество
-                    </a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Обучающие материалы
-                    </a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      3D - модели
-                    </a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link">
-                      Пункт 4
-                    </a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
+            </li>
+            <li class="header__top_item">
+              <LanguageSwitcher></LanguageSwitcher>
+            </li>
+            <li class="header__top_item">
+              <ThemeSwitcher></ThemeSwitcher>
             </li>
           </ul>
         </div>
@@ -203,11 +227,11 @@ if (isOpenPopup.value === false) {
       <div class="container header__bottom_container">
         <div class="header__bottom_flex">
           <div class="header__bottom_left">
-            <a href="index.html" class="header__logo">
+            <RouterLink class="header__logo" :to="Tr.i18nRoute({ name: 'home' })">
               <svg width="141" height="44" viewBox="0 0 141 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.5391 21.5684V27.2031C16.3177 27.4701 15.9759 27.7598 15.5137 28.0723C15.0514 28.3783 14.4557 28.6419 13.7266 28.8633C12.9974 29.0846 12.1152 29.1953 11.0801 29.1953C10.1621 29.1953 9.32552 29.0456 8.57031 28.7461C7.8151 28.4401 7.16406 27.9941 6.61719 27.4082C6.07682 26.8223 5.66016 26.1061 5.36719 25.2598C5.07422 24.4069 4.92773 23.4336 4.92773 22.3398V21.4512C4.92773 20.3574 5.06771 19.3841 5.34766 18.5312C5.63411 17.6784 6.04102 16.959 6.56836 16.373C7.0957 15.7871 7.72396 15.3411 8.45312 15.0352C9.18229 14.7292 9.99284 14.5762 10.8848 14.5762C12.1217 14.5762 13.1374 14.778 13.9316 15.1816C14.7259 15.5788 15.3314 16.1322 15.748 16.8418C16.1712 17.5449 16.4316 18.3522 16.5293 19.2637H13.6875C13.6159 18.7819 13.4792 18.362 13.2773 18.0039C13.0755 17.6458 12.7858 17.3659 12.4082 17.1641C12.0371 16.9622 11.5553 16.8613 10.9629 16.8613C10.4746 16.8613 10.0384 16.9622 9.6543 17.1641C9.27669 17.3594 8.95768 17.6491 8.69727 18.0332C8.43685 18.4173 8.23828 18.8926 8.10156 19.459C7.96484 20.0254 7.89648 20.6829 7.89648 21.4316V22.3398C7.89648 23.082 7.9681 23.7396 8.11133 24.3125C8.25456 24.8789 8.46615 25.3574 8.74609 25.748C9.03255 26.1322 9.38411 26.4219 9.80078 26.6172C10.2174 26.8125 10.7025 26.9102 11.2559 26.9102C11.7181 26.9102 12.1022 26.8711 12.4082 26.793C12.7207 26.7148 12.9714 26.6204 13.1602 26.5098C13.3555 26.3926 13.5052 26.2819 13.6094 26.1777V23.6582H10.9336V21.5684H16.5391ZM29.043 26.7148V29H21.8848V26.7148H29.043ZM22.832 14.7812V29H19.9023V14.7812H22.832ZM42.7578 21.5586V22.2324C42.7578 23.3132 42.6113 24.2832 42.3184 25.1426C42.0254 26.002 41.612 26.7344 41.0781 27.3398C40.5443 27.9388 39.9062 28.3978 39.1641 28.7168C38.4284 29.0358 37.6113 29.1953 36.7129 29.1953C35.821 29.1953 35.0039 29.0358 34.2617 28.7168C33.526 28.3978 32.888 27.9388 32.3477 27.3398C31.8073 26.7344 31.3874 26.002 31.0879 25.1426C30.7949 24.2832 30.6484 23.3132 30.6484 22.2324V21.5586C30.6484 20.4714 30.7949 19.5013 31.0879 18.6484C31.3809 17.7891 31.7943 17.0566 32.3281 16.4512C32.8685 15.8457 33.5065 15.3835 34.2422 15.0645C34.9844 14.7454 35.8014 14.5859 36.6934 14.5859C37.5918 14.5859 38.4089 14.7454 39.1445 15.0645C39.8867 15.3835 40.5247 15.8457 41.0586 16.4512C41.599 17.0566 42.0156 17.7891 42.3086 18.6484C42.6081 19.5013 42.7578 20.4714 42.7578 21.5586ZM39.7988 22.2324V21.5391C39.7988 20.7839 39.7305 20.1198 39.5938 19.5469C39.457 18.974 39.2552 18.4922 38.9883 18.1016C38.7214 17.7109 38.3958 17.418 38.0117 17.2227C37.6276 17.0208 37.1882 16.9199 36.6934 16.9199C36.1986 16.9199 35.7591 17.0208 35.375 17.2227C34.9974 17.418 34.6751 17.7109 34.4082 18.1016C34.1478 18.4922 33.9492 18.974 33.8125 19.5469C33.6758 20.1198 33.6074 20.7839 33.6074 21.5391V22.2324C33.6074 22.9811 33.6758 23.6452 33.8125 24.2246C33.9492 24.7975 34.151 25.2826 34.418 25.6797C34.6849 26.0703 35.0104 26.3665 35.3945 26.5684C35.7786 26.7702 36.2181 26.8711 36.7129 26.8711C37.2077 26.8711 37.6471 26.7702 38.0312 26.5684C38.4154 26.3665 38.7376 26.0703 38.998 25.6797C39.2585 25.2826 39.457 24.7975 39.5938 24.2246C39.7305 23.6452 39.7988 22.9811 39.7988 22.2324ZM49.2949 26.7441L52.127 14.7812H53.709L54.0703 16.7734L51.0527 29H49.3535L49.2949 26.7441ZM47.8398 14.7812L50.1836 26.7441L49.9883 29H48.0938L44.9395 14.7812H47.8398ZM56.5605 26.6953L58.875 14.7812H61.7754L58.6309 29H56.7363L56.5605 26.6953ZM54.5977 14.7812L57.4492 26.793L57.3711 29H55.6719L52.6348 16.7637L53.0254 14.7812H54.5977ZM78.5898 24.2832H81.5098C81.4512 25.2402 81.1875 26.0898 80.7188 26.832C80.2565 27.5742 79.6087 28.1536 78.7754 28.5703C77.9486 28.987 76.9525 29.1953 75.7871 29.1953C74.8757 29.1953 74.0586 29.0391 73.3359 28.7266C72.6133 28.4076 71.9948 27.9518 71.4805 27.3594C70.9727 26.7669 70.5853 26.0508 70.3184 25.2109C70.0514 24.3711 69.918 23.4303 69.918 22.3887V21.4023C69.918 20.3607 70.0547 19.4199 70.3281 18.5801C70.6081 17.7337 71.0052 17.0143 71.5195 16.4219C72.0404 15.8294 72.6621 15.3737 73.3848 15.0547C74.1074 14.7357 74.9147 14.5762 75.8066 14.5762C76.9915 14.5762 77.9909 14.791 78.8047 15.2207C79.625 15.6504 80.2598 16.2428 80.709 16.998C81.1647 17.7533 81.4382 18.6126 81.5293 19.5762H78.5996C78.5671 19.0033 78.4531 18.5182 78.2578 18.1211C78.0625 17.7174 77.7663 17.4147 77.3691 17.2129C76.9785 17.0046 76.4577 16.9004 75.8066 16.9004C75.3184 16.9004 74.8919 16.9915 74.5273 17.1738C74.1628 17.3561 73.8568 17.6328 73.6094 18.0039C73.362 18.375 73.1764 18.8438 73.0527 19.4102C72.9355 19.9701 72.877 20.6276 72.877 21.3828V22.3887C72.877 23.1243 72.9323 23.7721 73.043 24.332C73.1536 24.8854 73.3229 25.3542 73.5508 25.7383C73.7852 26.1159 74.0846 26.4023 74.4492 26.5977C74.8203 26.7865 75.2663 26.8809 75.7871 26.8809C76.3991 26.8809 76.9036 26.7832 77.3008 26.5879C77.6979 26.3926 78.0007 26.1029 78.209 25.7188C78.4238 25.3346 78.5508 24.8561 78.5898 24.2832ZM84.4336 14.7812H89.7363C90.8236 14.7812 91.7578 14.944 92.5391 15.2695C93.3268 15.5951 93.9323 16.0768 94.3555 16.7148C94.7786 17.3529 94.9902 18.1374 94.9902 19.0684C94.9902 19.8301 94.86 20.4844 94.5996 21.0312C94.3457 21.5716 93.9844 22.0241 93.5156 22.3887C93.0534 22.7467 92.5098 23.0332 91.8848 23.248L90.957 23.7363H86.3477L86.3281 21.4512H89.7559C90.2702 21.4512 90.6966 21.36 91.0352 21.1777C91.3737 20.9954 91.6276 20.7415 91.7969 20.416C91.9727 20.0905 92.0605 19.7129 92.0605 19.2832C92.0605 18.8275 91.9759 18.4336 91.8066 18.1016C91.6374 17.7695 91.3802 17.5156 91.0352 17.3398C90.6901 17.1641 90.2572 17.0762 89.7363 17.0762H87.3633V29H84.4336V14.7812ZM92.3828 29L89.1406 22.6621L92.2363 22.6426L95.5176 28.8633V29H92.3828ZM104.027 17.2129L100.16 29H97.0449L102.328 14.7812H104.311L104.027 17.2129ZM107.24 29L103.363 17.2129L103.051 14.7812H105.053L110.365 29H107.24ZM107.064 23.707V26.002H99.5547V23.707H107.064ZM115.613 14.7812V29H112.684V14.7812H115.613ZM121.277 20.8555V23.1406H114.812V20.8555H121.277ZM121.961 14.7812V17.0762H114.812V14.7812H121.961ZM131.213 14.7812V29H128.293V14.7812H131.213ZM135.588 14.7812V17.0762H123.986V14.7812H135.588Z" fill="currentColor"/>
               </svg>
-            </a>
+            </RouterLink>
           </div>
           <div class="header__bottom_search">
             <button class="header__burger">
@@ -852,12 +876,6 @@ if (isOpenPopup.value === false) {
           </div>
           <div class="header__bottom_right">
             <div class="header__bottom_buttons">
-              <!-- <a href="personal.html" class="header__bottom_button header__entrance">
-                <div class="header__bottom_image">
-                  <img src="img/user.webp" alt="">
-                </div>
-                <span>Валерия</span>
-              </a> -->
               <button class="header__bottom_button header__catalog">
                 <div class="header__bottom_image">
                   <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -867,7 +885,13 @@ if (isOpenPopup.value === false) {
                 </div>
                 <span>Каталог</span>
               </button>
-              <button class="header__bottom_button header__personal">
+              <!-- <a href="personal.html" class="header__bottom_button header__entrance">
+                <div class="header__bottom_image">
+                  <img src="img/user.webp" alt="">
+                </div>
+                <span>Валерия</span>
+              </a> -->
+              <button class="header__bottom_button header__personal" @click="toggleLogin">
                 <div class="header__bottom_image">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.0002 11.6673C16.5775 11.6673 18.6668 9.57798 18.6668 7.00065C18.6668 4.42332 16.5775 2.33398 14.0002 2.33398C11.4228 2.33398 9.3335 4.42332 9.3335 7.00065C9.3335 9.57798 11.4228 11.6673 14.0002 11.6673Z" stroke="currentColor" stroke-width="1.50769"/>
@@ -1965,60 +1989,6 @@ if (isOpenPopup.value === false) {
         </div>
       </div>
     </div>
-    <div class="container header__container">
-      <div class="header__block">
-        <RouterLink class="header__logo" :to="Tr.i18nRoute({ name: 'home' })">
-          <svg width="68" height="19" viewBox="0 0 68 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.851562 18V0.867188H5.48047V14.2617H12.0781V18H0.851562ZM30.8516 9.41016C30.8516 10.7305 30.6914 11.9336 30.3711 13.0195C30.0586 14.0977 29.5664 15.0273 28.8945 15.8086C28.2227 16.5898 27.3594 17.1914 26.3047 17.6133C25.25 18.0273 23.9883 18.2344 22.5195 18.2344C21.082 18.2344 19.8359 18.0273 18.7812 17.6133C17.7344 17.1914 16.8711 16.5938 16.1914 15.8203C15.5117 15.0391 15.0078 14.1055 14.6797 13.0195C14.3516 11.9336 14.1875 10.7227 14.1875 9.38672C14.1875 7.60547 14.4805 6.05859 15.0664 4.74609C15.6602 3.42578 16.5742 2.40625 17.8086 1.6875C19.043 0.960938 20.6211 0.597656 22.543 0.597656C24.4961 0.597656 26.082 0.960938 27.3008 1.6875C28.5273 2.41406 29.4258 3.4375 29.9961 4.75781C30.5664 6.07812 30.8516 7.62891 30.8516 9.41016ZM19.0625 9.41016C19.0625 10.4414 19.1797 11.3281 19.4141 12.0703C19.6484 12.8125 20.0195 13.3828 20.5273 13.7812C21.0352 14.1797 21.6992 14.3789 22.5195 14.3789C23.3711 14.3789 24.0469 14.1797 24.5469 13.7812C25.0547 13.3828 25.418 12.8125 25.6367 12.0703C25.8633 11.3281 25.9766 10.4414 25.9766 9.41016C25.9766 7.86328 25.7188 6.64062 25.2031 5.74219C24.6875 4.84375 23.8008 4.39453 22.543 4.39453C21.707 4.39453 21.0312 4.59766 20.5156 5.00391C20.0078 5.41016 19.6367 5.98828 19.4023 6.73828C19.1758 7.48828 19.0625 8.37891 19.0625 9.41016ZM40.8242 7.96875H48.2188V17.2031C47.3359 17.5078 46.3242 17.7578 45.1836 17.9531C44.043 18.1406 42.8477 18.2344 41.5977 18.2344C39.9492 18.2344 38.5039 17.9141 37.2617 17.2734C36.0195 16.6328 35.0508 15.6602 34.3555 14.3555C33.6602 13.043 33.3125 11.3867 33.3125 9.38672C33.3125 7.58984 33.6562 6.03906 34.3438 4.73438C35.0312 3.42188 36.043 2.41016 37.3789 1.69922C38.7227 0.980469 40.3672 0.621094 42.3125 0.621094C43.3828 0.621094 44.3984 0.722656 45.3594 0.925781C46.3203 1.12891 47.1562 1.38672 47.8672 1.69922L46.4023 5.33203C45.7852 5.02734 45.1445 4.80078 44.4805 4.65234C43.8164 4.49609 43.1016 4.41797 42.3359 4.41797C41.3125 4.41797 40.4883 4.64844 39.8633 5.10938C39.2461 5.57031 38.7969 6.1875 38.5156 6.96094C38.2344 7.72656 38.0938 8.57422 38.0938 9.50391C38.0938 10.5664 38.2422 11.4648 38.5391 12.1992C38.8438 12.9258 39.2852 13.4805 39.8633 13.8633C40.4492 14.2383 41.1562 14.4258 41.9844 14.4258C42.2578 14.4258 42.5898 14.4062 42.9805 14.3672C43.3789 14.3281 43.6797 14.2812 43.8828 14.2266V11.543H40.8242V7.96875ZM67.7422 9.41016C67.7422 10.7305 67.582 11.9336 67.2617 13.0195C66.9492 14.0977 66.457 15.0273 65.7852 15.8086C65.1133 16.5898 64.25 17.1914 63.1953 17.6133C62.1406 18.0273 60.8789 18.2344 59.4102 18.2344C57.9727 18.2344 56.7266 18.0273 55.6719 17.6133C54.625 17.1914 53.7617 16.5938 53.082 15.8203C52.4023 15.0391 51.8984 14.1055 51.5703 13.0195C51.2422 11.9336 51.0781 10.7227 51.0781 9.38672C51.0781 7.60547 51.3711 6.05859 51.957 4.74609C52.5508 3.42578 53.4648 2.40625 54.6992 1.6875C55.9336 0.960938 57.5117 0.597656 59.4336 0.597656C61.3867 0.597656 62.9727 0.960938 64.1914 1.6875C65.418 2.41406 66.3164 3.4375 66.8867 4.75781C67.457 6.07812 67.7422 7.62891 67.7422 9.41016ZM55.9531 9.41016C55.9531 10.4414 56.0703 11.3281 56.3047 12.0703C56.5391 12.8125 56.9102 13.3828 57.418 13.7812C57.9258 14.1797 58.5898 14.3789 59.4102 14.3789C60.2617 14.3789 60.9375 14.1797 61.4375 13.7812C61.9453 13.3828 62.3086 12.8125 62.5273 12.0703C62.7539 11.3281 62.8672 10.4414 62.8672 9.41016C62.8672 7.86328 62.6094 6.64062 62.0938 5.74219C61.5781 4.84375 60.6914 4.39453 59.4336 4.39453C58.5977 4.39453 57.9219 4.59766 57.4062 5.00391C56.8984 5.41016 56.5273 5.98828 56.293 6.73828C56.0664 7.48828 55.9531 8.37891 55.9531 9.41016Z" fill="currentColor"/>
-          </svg>
-        </RouterLink>
-        <div class="header__flex">
-
-          <nav>
-            <ul>
-              <li>
-                <RouterLink :to="Tr.i18nRoute({ name: 'home' })">{{ $t("nav.home") }}</RouterLink>
-              </li>
-              
-              <li>
-                <RouterLink :to="Tr.i18nRoute({ name: 'about' })">{{ $t("nav.about") }}</RouterLink>
-              </li>
-            </ul>
-          </nav>
-
-          <LanguageSwitcher></LanguageSwitcher>
-          <ThemeSwitcher></ThemeSwitcher>
-          <RouterLink class="header__add" :to="Tr.i18nRoute({ name: 'home' })">
-            <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5259 3.54102C10.8711 3.54147 11.1505 3.82166 11.1501 4.16683L11.1348 15.8335C11.1343 16.1787 10.8541 16.4581 10.5089 16.4577C10.1638 16.4572 9.88431 16.177 9.88477 15.8319L9.90006 4.1652C9.90051 3.82002 10.1807 3.54056 10.5259 3.54102Z" fill="currentColor"/>
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.04102 10C4.04102 9.65482 4.32084 9.375 4.66602 9.375H16.3327C16.6779 9.375 16.9577 9.65482 16.9577 10C16.9577 10.3452 16.6779 10.625 16.3327 10.625H4.66602C4.32084 10.625 4.04102 10.3452 4.04102 10Z" fill="currentColor"/>
-            </svg>
-            <span>Создать статью</span>
-          </RouterLink>
-          <div class="header__buttons">
-            <RouterLink class="header__search" :to="Tr.i18nRoute({ name: 'home' })">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.041 18.7493C11.041 14.4922 14.4922 11.041 18.7493 11.041C23.0065 11.041 26.4577 14.4922 26.4577 18.7493C26.4577 23.0065 23.0065 26.4577 18.7493 26.4577C14.4922 26.4577 11.041 23.0065 11.041 18.7493ZM18.7493 12.291C15.1825 12.291 12.291 15.1825 12.291 18.7493C12.291 22.3162 15.1825 25.2077 18.7493 25.2077C22.3162 25.2077 25.2077 22.3162 25.2077 18.7493C25.2077 15.1825 22.3162 12.291 18.7493 12.291Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M23.3999 23.3999C23.6439 23.1558 24.0397 23.1558 24.2837 23.3999L27.8193 26.9354C28.0634 27.1795 28.0634 27.5752 27.8193 27.8193C27.5752 28.0634 27.1795 28.0634 26.9354 27.8193L23.3999 24.2837C23.1558 24.0397 23.1558 23.6439 23.3999 23.3999Z" fill="currentColor"/>
-              </svg>
-            </RouterLink>
-            <a class="header__login" @click="toggleLogin">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.459 15.4167C16.459 13.4607 18.0446 11.875 20.0007 11.875C21.9567 11.875 23.5423 13.4607 23.5423 15.4167C23.5423 17.3727 21.9567 18.9583 20.0007 18.9583C18.0446 18.9583 16.459 17.3727 16.459 15.4167ZM20.0007 13.125C18.735 13.125 17.709 14.151 17.709 15.4167C17.709 16.6823 18.735 17.7083 20.0007 17.7083C21.2663 17.7083 22.2923 16.6823 22.2923 15.4167C22.2923 14.151 21.2663 13.125 20.0007 13.125Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8058 21.041H22.1942C23.1043 21.041 23.8255 21.041 24.4069 21.0885C25.0014 21.1371 25.5044 21.2384 25.9637 21.4724C26.7085 21.8519 27.3141 22.4575 27.6936 23.2023C27.9276 23.6616 28.0289 24.1647 28.0775 24.7591C28.125 25.3405 28.125 26.0617 28.125 26.9718V27.4993C28.125 27.8445 27.8452 28.1243 27.5 28.1243H12.5C12.1548 28.1243 11.875 27.8445 11.875 27.4993L11.875 26.9718C11.875 26.0617 11.875 25.3405 11.9225 24.7591C11.9711 24.1646 12.0724 23.6616 12.3064 23.2023C12.6859 22.4575 13.2915 21.8519 14.0363 21.4724C14.4956 21.2384 14.9986 21.1371 15.5931 21.0885C16.1745 21.041 16.8957 21.041 17.8058 21.041ZM14.6038 22.5862C14.0942 22.8459 13.6798 23.2602 13.4202 23.7698C13.2909 24.0235 13.2106 24.3437 13.1683 24.8609C13.1274 25.362 13.1251 25.996 13.125 26.8743H26.875C26.8749 25.996 26.8726 25.362 26.8317 24.8609C26.7894 24.3437 26.7091 24.0235 26.5798 23.7698C26.3202 23.2602 25.9058 22.8459 25.3962 22.5862M14.6038 22.5862C14.8575 22.4569 15.1777 22.3766 15.6949 22.3344C16.2194 22.2915 16.8896 22.291 17.8333 22.291H22.1667C23.1104 22.291 23.7806 22.2915 24.3051 22.3344C24.8223 22.3766 25.1425 22.4569 25.3962 22.5862" fill="currentColor"/>
-              </svg>
-            </a>
-            <RouterLink class="header__burger" :to="Tr.i18nRoute({ name: 'home' })">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6875 14.9785C12.6875 14.6333 12.9673 14.3535 13.3125 14.3535H26.6458C26.991 14.3535 27.2708 14.6333 27.2708 14.9785C27.2708 15.3237 26.991 15.6035 26.6458 15.6035H13.3125C12.9673 15.6035 12.6875 15.3237 12.6875 14.9785Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6875 19.9785C12.6875 19.6333 12.9673 19.3535 13.3125 19.3535H26.6458C26.991 19.3535 27.2708 19.6333 27.2708 19.9785C27.2708 20.3237 26.991 20.6035 26.6458 20.6035H13.3125C12.9673 20.6035 12.6875 20.3237 12.6875 19.9785Z" fill="currentColor"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6875 24.9785C12.6875 24.6333 12.9673 24.3535 13.3125 24.3535H26.6458C26.991 24.3535 27.2708 24.6333 27.2708 24.9785C27.2708 25.3237 26.991 25.6035 26.6458 25.6035H13.3125C12.9673 25.6035 12.6875 25.3237 12.6875 24.9785Z" fill="currentColor"/>
-              </svg>
-            </RouterLink>
-          </div>
-        </div>
-      </div>
-    </div>
   </header>
   <div :class="['header__form', { active: isOpenPopup }]">
     <button class="header__form_close" @click="clickCloseHeaderForm">
@@ -2953,8 +2923,8 @@ if (isOpenPopup.value === false) {
   z-index: 100;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
-}
-.header::before {
+} */
+/* .header::before {
   content: "";
   width: 200%;
   height: 200%;
@@ -2964,11 +2934,11 @@ if (isOpenPopup.value === false) {
   z-index: 0;
   opacity: 0.7;
   background-color: var(--bg-gray);
-}
-.header__container {
+} */
+/* .header__container {
   height: 100%;
-}
-.header__container::after {
+} */
+/* .header__container::after {
   content: "";
   width: 200%;
   height: 200%;
@@ -2977,39 +2947,33 @@ if (isOpenPopup.value === false) {
   left: -50%;
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
-}
-.header__block {
+} */
+/* .header__block {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: space-between;
   position: relative;
   z-index: 1;
-}
-.header__logo {
+} */
+/* .header__logo {
   display: flex;
   width: 70px;
   height: 33px;
   align-items: center;
   justify-content: center;
   object-fit: contain;
-}
-.header__flex {
+} */
+/* .header__flex {
   display: flex;
   align-items: center;
   gap: 20px;
-}
+} */
 .header__add {
   display: flex;
   padding: 5px;
   align-items: center;
   gap: 10px;
-}
-.header__buttons,
-.header__buttons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .header__form {
   width: 100%;
@@ -3058,12 +3022,12 @@ if (isOpenPopup.value === false) {
   color: var(--hover);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
-} */
+}
 
 @media (max-width: 580px) {
   /* .header__flex {
     gap: 5px;
-  }
+  } */
   .header__add {
     width: 40px;
     height: 40px;
@@ -3092,6 +3056,6 @@ if (isOpenPopup.value === false) {
   .header__form_close {
     top: 15px;
     right: 15px;
-  } */
+  }
 }
 </style>
