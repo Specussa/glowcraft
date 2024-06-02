@@ -1,7 +1,8 @@
 {
   "locale": {
     "en": "English",
-    "ru": "Russian"
+    "ru": "Russian",
+    "language": "English"
   },
   "nav": {
     "home": "Home",

@@ -50,57 +50,25 @@ if (isOpenPopup.value === false) {
   });
 }
 
-
-// start cart__accordion_block
-// const headertoplink = document.querySelector('.header__top_link');
-// const headertoplinks = document.getElementsByClassName("header__top_link");
-// if (headertoplink) {
-//   for (i = 0; i < headertoplinks.length; i++) {
-//     headertoplinks[i].onclick = function(e) {
-//       const headertoplinksNext = this.nextElementSibling;
-//       if (headertoplinksNext && this.parentElement.classList.contains("active")) {
-//         this.parentElement.classList.remove("active");
-//         headertoplinksNext.style.maxHeight = null;
-//       } else if (headertoplinksNext) {
-//         e.preventDefault();
-//         htlitem.forEach(n => n.classList.remove('active'));
-//         htlinfo.forEach(n => n.style.maxHeight = null);
-//         headertoplinksNext.style.maxHeight = headertoplinksNext.scrollHeight + "px";
-//         this.parentElement.classList.add("active");
-//       }
-//     };
-//   }
-//   window.addEventListener('click', e => {
-//     const target = e.target
-//     if (!target.closest('.header__top_list')) {
-//       htlitem.forEach(n => n.classList.remove('active'));
-//       htlinfo.forEach(n => n.style.maxHeight = null);
-//     }
-//   })
-// }
-// end cart__accordion_block
-  import { reactive } from 'vue'
-
-const items = [{ details: 'hello' }, { details: '123' }]
-const isActive = reactive({})
-const toggleAccordion = async i => {
-  console.log(isActive[i])
-  isActive[i] = isActive[i] ? !isActive[i] : true
-  console.log(isActive[i])
+function toggleHeaderLink(event) {
+  if (event.target.parentElement.nextElementSibling && event.target.parentElement.parentElement.classList.contains("active")) {
+    event.target.parentElement.parentElement.classList.remove("active");
+    event.target.parentElement.nextElementSibling.style.maxHeight = null;
+  } else if (event.target.parentElement.nextElementSibling) {
+    document.querySelectorAll(".header__top_flex .header__top_item").forEach(n => n.classList.remove('active'));
+    document.querySelectorAll(".header__top_flex .header__top_info").forEach(n => n.style.maxHeight = null);
+    event.target.parentElement.nextElementSibling.style.maxHeight = event.target.parentElement.nextElementSibling.scrollHeight + "px";
+    event.target.parentElement.parentElement.classList.add("active");
+    event.preventDefault();
+  }
 }
-const toggleHeaderLink = (e) => {
-  console.log($el)
-  // if (this.nextElementSibling && this.parentElement.classList.contains("active")) {
-  //   this.parentElement.classList.remove("active");
-  //   this.nextElementSibling.style.maxHeight = null;
-  // } else if (this.nextElementSibling) {
-  //   e.preventDefault();
-  //   document.querySelectorAll(".header__top_flex .header__top_item").forEach(n => n.classList.remove('active'));
-  //   document.querySelectorAll(".header__top_flex .header__top_info").forEach(n => n.style.maxHeight = null);
-  //   this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + "px";
-  //   this.parentElement.classList.add("active");
-  // }
-};
+window.addEventListener('click', event => {
+  const target = event.target;
+  if (!target.closest('.header__top_list')) {
+    document.querySelectorAll(".header__top_flex .header__top_item").forEach(n => n.classList.remove('active'));
+    document.querySelectorAll(".header__top_flex .header__top_info").forEach(n => n.style.maxHeight = null);
+  }
+})
 </script>
 
 <template>
@@ -115,12 +83,14 @@ const toggleHeaderLink = (e) => {
               <RouterLink class="header__top_link" :to="Tr.i18nRoute({ name: 'about' })">{{ $t("nav.about") }}</RouterLink>
             </li>
             <li class="header__top_item">
-              <a href="#" :class="{ 'is-open': isActive, 'header__top_link': true }" @click="() => toggleAccordion(i)">
-                Покупателям
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
+              <RouterLink class="header__top_link" :to="Tr.i18nRoute({ name: 'about' })">
+                <span @click="toggleHeaderLink">
+                  {{ $t("nav.about") }}
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </RouterLink>
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
@@ -139,11 +109,13 @@ const toggleHeaderLink = (e) => {
               </div>
             </li>
             <li class="header__top_item">
-              <a href="#" class="header__top_link" @click="toggleHeaderLink">
-                Дизайнерам
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <a href="#" class="header__top_link">
+                <span @click="toggleHeaderLink">
+                  Дизайнерам
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
               </a>
               <div class="header__top_info">
                 <ul class="header__top_info_list">
@@ -165,11 +137,13 @@ const toggleHeaderLink = (e) => {
           </ul>
           <ul class="header__top_list">
             <li class="header__top_item">
-              <button class="header__top_link" @click="toggleHeaderLink">
-                Самара
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <button class="header__top_link">
+                <span @click="toggleHeaderLink">
+                  Самара
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
               </button>
               <div class="header__top_info">
                 <ul class="header__top_info_list">
@@ -189,11 +163,13 @@ const toggleHeaderLink = (e) => {
               </div>
             </li>
             <li class="header__top_item">
-              <a href="tel://+79869553948" class="header__top_link" @click="toggleHeaderLink">
-                +7 (986) 955-39-48
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <a href="tel://+79869553948" class="header__top_link">
+                <span @click="toggleHeaderLink">
+                  +7 (986) 955-39-48
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.8337 7.49976L10.0003 12.4998L4.16699 7.49976" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
               </a>
               <div class="header__top_info">
                 <ul class="header__top_info_list">
@@ -212,9 +188,7 @@ const toggleHeaderLink = (e) => {
                 </ul>
               </div>
             </li>
-            <li class="header__top_item">
-              <LanguageSwitcher></LanguageSwitcher>
-            </li>
+            <LanguageSwitcher></LanguageSwitcher>
             <li class="header__top_item">
               <ThemeSwitcher></ThemeSwitcher>
             </li>
@@ -2004,16 +1978,16 @@ const toggleHeaderLink = (e) => {
 </template>
 
 <script>
-  import ThemeSwitcher from "@/components/ThemeSwitcher.vue"
-  import LanguageSwitcher from "@/components/LanguageSwitcher.vue"
-  import Tr from "@/i18n/translation"
+import ThemeSwitcher from "@/components/ThemeSwitcher.vue"
+import LanguageSwitcher from "@/components/LanguageSwitcher.vue"
+import Tr from "@/i18n/translation"
 
-  export default {
-    components: { LanguageSwitcher, ThemeSwitcher },
-    setup() {
-      return { Tr }
-    }
+export default {
+  components: { LanguageSwitcher, ThemeSwitcher },
+  setup() {
+    return { Tr }
   }
+}
 </script>
 
 <style lang="css" scoped>
@@ -2150,7 +2124,8 @@ const toggleHeaderLink = (e) => {
   cursor: pointer;
 }
 
-.header__top_link {
+.header__top_link,
+.header__top_link span {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2174,6 +2149,7 @@ const toggleHeaderLink = (e) => {
   object-fit: contain;
   -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
+  pointer-events: none;
   -webkit-transition: -webkit-transform 0.3s linear;
   transition: transform 0.3s linear;
 }
