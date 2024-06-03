@@ -62,10 +62,6 @@ function toggleHeaderLink(event) {
     event.preventDefault();
   }
 }
-function toggleHeaderInfoLink(event) {
-    document.querySelectorAll(".header__top_flex .header__top_item").forEach(n => n.classList.remove('active'));
-    document.querySelectorAll(".header__top_flex .header__top_info").forEach(n => n.style.maxHeight = null);
-}
 window.addEventListener('click', event => {
   const target = event.target;
   if (!target.closest('.header__top_list')) {
@@ -98,16 +94,16 @@ window.addEventListener('click', event => {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Сотрудничество</a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Обучающие материалы</a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">3D - модели</a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Пункт 4</a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
@@ -124,16 +120,16 @@ window.addEventListener('click', event => {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Сотрудничество</a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Обучающие материалы</a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">3D - модели</a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Пункт 4</a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
@@ -152,16 +148,16 @@ window.addEventListener('click', event => {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Сотрудничество</a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Обучающие материалы</a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">3D - модели</a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Пункт 4</a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
@@ -178,16 +174,16 @@ window.addEventListener('click', event => {
               <div class="header__top_info">
                 <ul class="header__top_info_list">
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Сотрудничество</a>
+                    <a href="#" class="header__top_info_link">Сотрудничество</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Обучающие материалы</a>
+                    <a href="#" class="header__top_info_link">Обучающие материалы</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">3D - модели</a>
+                    <a href="#" class="header__top_info_link">3D - модели</a>
                   </li>
                   <li class="header__top_info_item">
-                    <a href="#" class="header__top_info_link" @click="toggleHeaderInfoLink">Пункт 4</a>
+                    <a href="#" class="header__top_info_link">Пункт 4</a>
                   </li>
                 </ul>
               </div>
